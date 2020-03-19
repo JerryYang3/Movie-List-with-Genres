@@ -85,19 +85,18 @@
 
   listGroup.addEventListener('click', event => {
     let input = event.target.innerText
-    let results
-    results = data.filter(
-      movie => genres[movie.genres[0]] === input ||
-        genres[movie.genres[1]] === input ||
-        genres[movie.genres[2]] === input ||
-        genres[movie.genres[3]] === input ||
-        genres[movie.genres[4]] === input ||
-        genres[movie.genres[5]] === input
+    let results = data.filter(movie =>
+      movie.genres.some(key => input === genres[key])
     )
-    console.log(input)
-    getTotalPages(results)
-    displayDataList(results)
-    getPageData(1, results)
+    if (results.length !== 0) {
+      console.log(results)
+      getTotalPages(results)
+      displayDataList(results)
+      getPageData(1, results)
+    }
+    else {
+      nullValueDataList()
+    }
   })
 
 
@@ -150,5 +149,13 @@
 
       dataPanel.innerHTML = htmlContent
     })
+  }
+
+  function nullValueDataList() {
+    let htmlContent = ''
+    htmlContent += `
+      <h3>找不到相關類別之電影</h3>
+      `
+    dataPanel.innerHTML = htmlContent
   }
 })()
