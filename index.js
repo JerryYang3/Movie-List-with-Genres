@@ -154,7 +154,7 @@
   function nullValueDataList() {
     let htmlContent = ''
     htmlContent += `
-      <h3>找不到相關類別之電影</h3>
+      <h3>此分類沒有資料</h3>
       `
     dataPanel.innerHTML = htmlContent
   }
